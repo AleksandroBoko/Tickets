@@ -28,5 +28,15 @@ namespace WebApplication1.Controllers
         {
             return View(tickets);
         }
+
+        public IActionResult BuyTicket(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound("The identificator must be set");
+            }
+            var ticket = tickets.Where(x => x.Id.Equals(id)).FirstOrDefault();
+            return Content($"You've bought ticket {ticket.Name} succesfully!");
+        }
     }
 }
